@@ -1,6 +1,8 @@
-##Fepper
+##Fepper for WordPress##
 
 #A frontend prototyper for the rapid prototyping of websites
+
+##This checkout of Fepper has templates configured for WordPress, along with a WordPress theme built to accept those templates.##
 
 * [Installation](#installation)
 * [Upgrading](#upgrading)
@@ -49,6 +51,8 @@
 * Start editing files in `patternlab-node/source`. Changes should automatically appear in the browser.
   * If changes do not appear immediately, it may be necessary to install a [LiveReload browser extension](http://livereload.com/extensions/).  
 * To halt Fepper, go to the command line where Fepper is running and press Ctrl+c.
+* To install the included WordPress instance, restore the MySQL dump `fepper-wordpress-mysqldump.sql`.
+* Update the `DB_` settings in `backend/wordpress/wp-config.php` to reflect your own database settings.
 
 ###<a id="upgrading"></a>Upgrading###
 Upgrading Fepper _should_ be as simple as dropping the new package over old. 
