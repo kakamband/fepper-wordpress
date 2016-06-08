@@ -3,7 +3,5 @@
   "attr-name-style": "dash",
   "id-class-style": false,
   "img-req-alt": false,
-  "indent-style": "spaces",
-  "indent-width": 2,
   "tag-bans": false
 }
