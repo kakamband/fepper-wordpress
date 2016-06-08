@@ -79,7 +79,13 @@ gulp.task('lint', [
   'custom:lint:preprocess',
   'lint:htmlhint',
   'lint:htmllint',
-  'lint:eslint',
+// Commenting out eslint because .eslintrc is drafted from the Drupal JavaScript
+// coding standards and no agreed upon .eslintrc exists for WordPress. Perhaps
+// the closest working example is from the eslint-config-wordpress NPM by netweb
+// https://www.npmjs.com/package/eslint-config-wordpress.
+// However, it is both buggy and overly-strict. Community contributions to
+// linting JS for WordPress are welcome.
+//  'lint:eslint',
   'lint:jsonlint',
   'contrib:lint',
   'custom:lint'
