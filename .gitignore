@@ -2,12 +2,13 @@
 .DS_Store
 .publish/
 /conf.yml
+!/excludes/extend/node_modules/
 /extend/
 /install.log
-/node_modules/
 /npm-debug.log
 Thumbs.db
 ignore/
+node_modules/
 patternlab-node/patternlab-config.json
 patternlab-node/public/*
 !patternlab-node/public/data/annotations.js
