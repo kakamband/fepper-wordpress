@@ -47,9 +47,6 @@
 		"short" : "Lorem ipsum dolor sit (37 characters)",
 		"medium" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. (72 characters)"
 	},
-	"search": {
-		"action": "#"
-	},
 	"name" : {
 		"first": "Lacy",
 		"firsti": "L",
@@ -57,6 +54,9 @@
 		"middlei": "T",
 		"last": "Way",
 		"lasti": "W"
+	},
+	"search": {
+		"action": "#"
 	},
 	"comments": {
 		"count": "5 Comments"
