@@ -5,9 +5,10 @@
 /extend/
 /install.log
 /npm-debug.log
-Thumbs.db
+/patternlab-config.json
+/public/*
+!/public/styleguide/
+/public/styleguide/data/
+/public/styleguide/html/
 ignore/
 node_modules/
-ui/patternlab-config.json
-ui/public/*
-!ui/public/styleguide/
