@@ -1,10 +1,11 @@
 <div class="page" id="page">
 	<div role="main">
-		<?php
+		<section class="hero-and-insets">
+			<?php
 query_posts( 'cat=6' );
 while ( have_posts() ) : the_post();
 ?>
-			<div class="block block-hero">
+				<div class="block block-hero">
 	<a href="<?php the_permalink(); ?>" class="inner">
 		<div class="b-thumb">
 			<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
@@ -15,15 +16,13 @@ while ( have_posts() ) : the_post();
 	</a>
 </div>
 
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 
-		<div class="g g-3up">
 			<?php
 query_posts( 'cat=11' );
 while ( have_posts() ) : the_post();
 ?>
-				<div class="gi">
-					<div class="block block-inset">
+				<div class="block block-inset">
 	<a href="<?php the_permalink(); ?>" class="inner">
 		<div class="b-thumb">
 			<?php echo get_the_post_thumbnail( $post->ID, 'full' ); ?>
@@ -34,9 +33,8 @@ while ( have_posts() ) : the_post();
 	</a>
 </div>
 
-				</div>
 			<?php endwhile; ?>
-		</div><!--end 3up-->
+		</section>
 
 		<hr />
 
@@ -51,12 +49,12 @@ while ( have_posts() ) : the_post();
 ?>
 							<li>
 								<div class="block block-thumb">
-	<a href="<?php the_permalink(); ?>" class="b-inner">
+	<a href="<?php the_permalink(); ?>" class="b-inner cf">
+		<h2 class="headline"><?php the_title(); ?></h2>
 		<div class="b-thumb">
 			<?php echo get_the_post_thumbnail( $post->ID, 'medium' ); ?>
 		</div>
 		<div class="b-text">
-			<h2 class="headline"><?php the_title(); ?></h2>
 			<?php the_excerpt(); ?>
 		</div>
 	</a>
