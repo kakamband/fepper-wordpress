@@ -68,9 +68,30 @@ function fepper_setup() {
 	add_theme_support( 'post-formats', array(
 		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
 	) );
+
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
+
+	/*
+	 * This theme styles the visual editor to resemble the theme style,
+	 * specifically font, colors, icons, and column width.
+	 */
+	add_editor_style( array( 'css/editor-style.css', fepper_fonts_url() ) );
 }
 endif; // fepper_setup
 add_action( 'after_setup_theme', 'fepper_setup' );
+
+/**
+ * Sets the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function fepper_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'fepper_content_width', 840 );
+}
+add_action( 'after_setup_theme', 'fepper_content_width', 0 );
 
 /**
  * Change excerpt length to 35 words
@@ -79,6 +100,45 @@ function fepper_excerpt_length( $length ) {
   return 35;
 }
 add_filter( 'excerpt_length', 'fepper_excerpt_length', 999 );
+
+if ( ! function_exists( 'fepper_fonts_url' ) ) :
+/**
+ * Register Google fonts.
+ *
+ * Create your own fepper_fonts_url() function to override in a child theme.
+ *
+ * @return string Google fonts URL for the theme.
+ */
+function fepper_fonts_url() {
+	$fonts_url = '';
+	$fonts     = array();
+	$subsets   = 'latin,latin-ext';
+
+	/* translators: If there are characters in your language that are not supported by Merriweather, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Merriweather font: on or off', 'fepper' ) ) {
+		$fonts[] = 'Merriweather:400,700,900,400italic,700italic,900italic';
+	}
+
+	/* translators: If there are characters in your language that are not supported by Montserrat, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Montserrat font: on or off', 'fepper' ) ) {
+		$fonts[] = 'Montserrat:400,700';
+	}
+
+	/* translators: If there are characters in your language that are not supported by Inconsolata, translate this to 'off'. Do not translate into your own language. */
+	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'fepper' ) ) {
+		$fonts[] = 'Inconsolata:400';
+	}
+
+	if ( $fonts ) {
+		$fonts_url = add_query_arg( array(
+			'family' => urlencode( implode( '|', $fonts ) ),
+			'subset' => urlencode( $subsets ),
+		), 'https://fonts.googleapis.com/css' );
+	}
+
+	return $fonts_url;
+}
+endif;
 
 /**
  * JavaScript Detection.
@@ -106,6 +166,9 @@ function fepper_scripts() {
 	wp_enqueue_script( 'fepper-variables', get_template_directory_uri() . '/_scripts/src/variables.styl', array(), false, true );
 	wp_enqueue_script( 'fepper-fepper-obj', get_template_directory_uri() . '/_scripts/src/fepper-obj.js', array(), false, true );
 	wp_enqueue_script( 'fepper-functions', get_template_directory_uri() . '/_scripts/src/functions.js', array( 'jquery' ), false, true );
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'fepper_styles' );
@@ -144,3 +207,13 @@ function fepper_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'fepper_widgets_init' );
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
