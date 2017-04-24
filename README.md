@@ -36,7 +36,7 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
 * Download the [latest release](https://github.com/electric-eloquence/fepper-wordpress/releases).
 
 #### Main install
-* On Mac OS:
+* On macOS:
   * Double-click `fepper.command`
   * Or on the command line, enter `./fepper.command`
 * On other OSs:
@@ -69,12 +69,7 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
   * If you Set-ExecutionPolicy to allow ps1 scripts, you can also enter `.\fepper.ps1 [task]`
 
 ### <a id="update"></a>Update
-Run `npm update` to download and install the latest core updates.
-
-To update the UI:
-
-* `cd public`
-* `npm update`
+Run `fp update` to download and install the latest updates.
 
 ### <a id="configure"></a>Configure
 Edit `pref.yml` to customize preferences and to view further documentation in 
@@ -83,7 +78,7 @@ tasks, you must supply values for the `backend.synced_dirs` preferences in order
 for those directories to get processed and copied to the backend.
 
 ### <a id="use"></a>Use
-* To launch from the Mac OS X Finder:
+* To launch from the macOS Finder:
   * Double-click `fepper.command`
 * To launch from the command line:
   * `fp`
@@ -215,8 +210,7 @@ Upon submission, you should be able to review the scraped output on the
 subsequent page. If the output looks correct, enter a filename and submit again. 
 The Scraper will save Mustache and JSON files by that name in the 98-scrape 
 directory, also viewable under the Scrape menu of the toolbar. The Scraper will 
-correctly indent the Mustache code. However, this beautification may also render 
-some attributes of the Mustache code a little different than the original HTML.
+also correctly indent the Mustache code.
 
 ### <a id="variables.styl"></a>variables.styl
 `source/_scripts/src/variables.styl` is a file containing variables that can 
@@ -288,7 +282,7 @@ fp ui:compile
 New UI customizations will not be picked up simply by restarting Fepper.
 
 You can compile the UI on every build by setting `compileUiOnEveryBuild` to 
-true in `patternlab-config.json`. However, this is not recommended since it 
+`true` in `patternlab-config.json`. However, this is not recommended since it 
 would be a drain on performance and simply isn't necessary on every build.
 
 ### <a id="extensions"></a>Extensions
