@@ -7,11 +7,10 @@
 // The base on which the rest of the styles are built.
 // /////////////////////////////////////////////////////////////////////////////
 @import 'partials/base/variables'
-@import 'partials/base/helpers'
 @import 'partials/base/reset'
-@import 'partials/base/global'
-@import 'partials/base/animation'
 @import 'partials/base/icons'
+@import 'partials/base/helpers'
+@import 'partials/base/global'
 
 // /////////////////////////////////////////////////////////////////////////////
 // Styles specific to Element subtypes.
@@ -24,6 +23,7 @@
 // Styles specific to Compound subtypes.
 // /////////////////////////////////////////////////////////////////////////////
 @import 'partials/compounds/text'
+@import 'partials/compounds/blocks'
 @import 'partials/compounds/forms'
 @import 'partials/compounds/navigation'
 @import 'partials/compounds/messaging'
@@ -31,7 +31,6 @@
 // /////////////////////////////////////////////////////////////////////////////
 // Styles specific to Component subtypes.
 // /////////////////////////////////////////////////////////////////////////////
-@import 'partials/components/global'
 @import 'partials/components/article'
 @import 'partials/components/comments'
 @import 'partials/components/sections'
@@ -39,8 +38,9 @@
 // /////////////////////////////////////////////////////////////////////////////
 // Styles specific to Pages.
 // /////////////////////////////////////////////////////////////////////////////
-@import 'partials/pages/layout'
 @import 'partials/pages/header'
+@import 'partials/pages/layout'
+@import 'partials/pages/footer'
 
 // These rules are here to pass theme-check.
 .bypostauthor 
