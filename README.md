@@ -40,7 +40,7 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
   * Double-click `fepper.command`
   * Among other things, this will install the [fepper-cli](https://www.npmjs.com/package/fepper-cli), 
     which will give you the `fp` command.
-     * If opening for the first time, macOS may warn that it can't be opened 
+  * If opening for the first time, macOS may warn that it can't be opened 
        because it is from an unidentified  developer.
      * In that case, Ctrl+click `fepper.command` and click "Open"
      * In the following prompt, click "Open" to confirm that you're sure you 
