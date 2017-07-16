@@ -15,14 +15,19 @@
 		@extend .lc
 		div[class^="menu-"]
 			font-size: 0.75em
+	@media all and (max-width: $bp-sm-max)
+		.footer-content
+			display: flex
+			flex-wrap: wrap
+			justify-content: space-between
 	@media all and (min-width: $bp-med)
 		.footer-content
 			padding-top: $space
 			> div
 				display: inline-block
 				margin-right: $space-double
-				margin-bottom: $space-quarter
-				vertical-align: -0.8rem
+				margin-bottom: $space-half
+				vertical-align: -($space-half + $space-quarter)
 			> div:first-child
 				vertical-align: baseline
 			> div:last-child
