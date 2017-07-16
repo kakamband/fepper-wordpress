@@ -1,5 +1,5 @@
 <!-- Begin .header -->
-<style>
+<style type="text/css">
 	<?php
 		$text_color = get_theme_support( 'custom-header', 'default-text-color' );
 		if ( $text_color ) :
@@ -11,16 +11,17 @@
 	<?php endif; ?>
 </style>
 <header class="header cf <?php
-	$args = array(
-		'category_name' => 'hero',
-		'post_type'     => 'post',
-		'post_status'   => 'publish',
-	);
-	$posts_hero = get_posts( $args );
-	$posts_hero_count = count( $posts_hero );
-	if ( ! $posts_hero_count ) {
-		echo 'header-image';
-	}
+	global $widgets;
+	$widgets = wp_get_sidebars_widgets();
+	if (
+		is_array( $widgets['sidebar'] ) &&
+		(
+			( count( $widgets['sidebar'] ) == 1 && strpos( $widgets['sidebar'][0], 'search' ) === 0 ) ||
+			count( $widgets['sidebar'] ) == 0
+		)
+	) :
+		echo 'header-no-image';
+	endif;
 ?>" role="banner">
 	<div class="site-branding">
 		<?php
@@ -35,9 +36,9 @@
 					$image_alt = get_bloginfo();
 				endif;
 		?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
-				<img src="<?php echo $image[0]; ?>" alt="<?php echo $image_alt; ?>" />
-			</a>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
+					<img src="<?php echo $image[0]; ?>" alt="<?php echo $image_alt; ?>" />
+				</a>
 		<?php
 				if ( is_front_page() ) :
 					echo '</h1>';
@@ -45,7 +46,9 @@
 			else :
 				if ( display_header_text() ) :
 		?>
-					<h1 class="site-title"><?php echo get_bloginfo(); ?></h1>
+					<h1 class="site-title">
+						<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo get_bloginfo(); ?></a>
+					</h1>
 					<h2 class="site-description"><?php echo get_bloginfo( 'description' ); ?></h2>
 		<?php
 				endif;
@@ -59,15 +62,13 @@
 		class="widget-area"
 		role="complementary"
 		<?php
-			if ( ! $posts_hero_count ) :
-				echo 'style="background: url(';
-				if ( get_header_image() ) {
-					header_image();
-				} else {
-					echo get_theme_root_uri() . '/fepper/_assets/src/landscape-16x9-mountains.jpg';
-				}
-				echo ') center no-repeat; background-size: cover;"';
+			echo 'style="background: url(';
+			if ( get_header_image() ) :
+				header_image();
+			else :
+				echo get_theme_root_uri() . '/fepper/_assets/src/landscape-16x9-mountains.jpg';
 			endif;
+			echo ') center no-repeat; background-size: cover;"';
 		?>
 		>
 		<?php dynamic_sidebar( 'sidebar' ); ?>
