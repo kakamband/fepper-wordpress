@@ -2,8 +2,9 @@
 
 # A frontend prototyper tool for rapid prototyping of web sites
 
-#### This checkout of Fepper has templates configured for WordPress, along with a WordPress theme built to accept those templates.
-The Fepper WordPress theme is backward-compatible with WordPress core down to WordPress 4.0.
+#### This checkout of Fepper has templates configured for WordPress, along with a [WordPress theme](https://wordpress.org/themes/fepper/) built to accept those templates.
+The Fepper WordPress theme is backward-compatible with WordPress core down to 
+WordPress 4.5.
 
 * [Main project](https://github.com/electric-eloquence/fepper)
 
@@ -33,7 +34,7 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
 * Recommended minimum Node.js version 7.6.0.
 
 #### Simplest way to get started
-* Download the [latest release](https://github.com/electric-eloquence/fepper-wordpress/releases/latest).
+* Download the <a href="https://github.com/electric-eloquence/fepper-wordpress/releases/latest" target="_blank">latest release</a>.
 
 #### Main install
 * In macOS Finder:
@@ -67,10 +68,13 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
     [LiveReload browser extension](http://livereload.com/extensions/).
 
 #### WordPress install
-* To install the included WordPress backend, restore the MySQL dump `fepper-wordpress-mysqldump.sql`.
-* Update the `DB_` settings in `backend/wordpress/wp-config.php` to reflect your own database settings.
+* To install the included WordPress backend, restore the MySQL dump 
+  `fepper-wordpress-mysqldump.sql`.
+* Update the `DB_` settings in `backend/wordpress/wp-config.php` to reflect 
+  your own database settings.
 * Configure `wp.local` to be the hostname in your web server configs.
-* Configure `backend/wordpress` (correctly pathed) to be the document root for this host.
+* Configure `backend/wordpress` (correctly pathed) to be the document root for 
+  this host.
 * Restart the web server.
 * Open http://wp.local in a browser.
 * Log into WordPress with `admin:admin`
@@ -386,8 +390,3 @@ If your Mac is connected to the Internet through a wire:
 * [Default pref.yml](https://github.com/electric-eloquence/fepper-npm/blob/dev/excludes/pref.yml)
 * [Pattern Lab](http://patternlab.io/docs/index.html)
 * [Mustache](https://mustache.github.io/mustache.5.html)
-
-### <a id="contribute"></a>Contribute
-Contributions and bug reports are greatly appreciated!
-
-* Please pull request against the dev branch.
