@@ -2,8 +2,7 @@
 
 # A frontend prototyper tool for rapid prototyping of web sites
 
-#### This checkout of Fepper has templates configured for WordPress, along with a WordPress theme built to accept those templates.
-The Fepper WordPress theme is backward-compatible with WordPress core down to WordPress 4.0.
+#### This checkout of Fepper has templates configured for WordPress, along with a [WordPress theme](https://wordpress.org/themes/fepper/) built to accept those templates.
 
 * [Main project](https://github.com/electric-eloquence/fepper)
 
@@ -25,23 +24,26 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
 * [Extensions](#extensions)
 * [Mobile Devices](#mobile-devices)
 * [More Documentation](#more-documentation)
-* [Contribute](#contribute)
 
 ### <a id="install"></a>Install
 #### System requirements
 * Unix-like or Windows OS.
-* Recommended minimum Node.js version 7.6.0.
+* Recommended minimum Node.js version 8.0.0.
+* Minimum WordPress version 4.5.
 
 #### Simplest way to get started
-* Download the [latest release](https://github.com/electric-eloquence/fepper-wordpress/releases).
+* Download the 
+  <a href="https://github.com/electric-eloquence/fepper-wordpress/releases/latest" target="_blank">
+  latest release</a>.
 
 #### Main install
 * In macOS Finder:
   * Double-click `fepper.command`
-  * Among other things, this will install the [fepper-cli](https://www.npmjs.com/package/fepper-cli), 
+  * Among other things, this will install the 
+    <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">fepper-cli</a>, 
     which will give you the `fp` command.
   * If opening for the first time, macOS may warn that it can't be opened 
-       because it is from an unidentified  developer.
+    because it is from an unidentified  developer.
      * In that case, Ctrl+click `fepper.command` and click "Open"
      * In the following prompt, click "Open" to confirm that you're sure you 
        want to open it.
@@ -59,18 +61,22 @@ The Fepper WordPress theme is backward-compatible with WordPress core down to Wo
 * To restart Fepper:
   * Double-click `fepper.command` again.
   * Or enter `fp` on the command line.
-* Consult the [Pattern Lab docs](http://patternlab.io/docs/index.html) for 
-  instructions on using Pattern Lab.
+* Consult the <a href="http://patternlab.io/docs/index.html" target="_blank">
+  Pattern Lab docs</a> for instructions on using Pattern Lab.
 * Start editing files in `source`. Changes should automatically appear in the 
   browser.
   * If changes do not appear immediately, it may be necessary to install a 
-    [LiveReload browser extension](http://livereload.com/extensions/).
+    <a href="http://livereload.com/extensions/" target="_blank">
+    LiveReload browser extension</a>.
 
 #### WordPress install
-* To install the included WordPress backend, restore the MySQL dump `fepper-wordpress-mysqldump.sql`.
-* Update the `DB_` settings in `backend/wordpress/wp-config.php` to reflect your own database settings.
+* To install the included WordPress backend, restore the MySQL dump 
+  `fepper-wordpress-mysqldump.sql`.
+* Update the `DB_` settings in `backend/wordpress/wp-config.php` to reflect 
+  your own database settings.
 * Configure `wp.local` to be the hostname in your web server configs.
-* Configure `backend/wordpress` (correctly pathed) to be the document root for this host.
+* Configure `backend/wordpress` (correctly pathed) to be the document root for 
+  this host.
 * Restart the web server.
 * Open http://wp.local in a browser.
 * Log into WordPress with `admin:admin`
@@ -166,24 +172,31 @@ backend web application.
   entire hierarchy, i.e. only `assets_dir`, `scripts_dir`, or `styles_dir` 
 * Files prefixed by "\_\_" will be ignored as will files in the `_nosync` 
   directory at the root of the source directories. 
+* Frontend code will be synced with a customizable 
+  <a href="https://github.com/electric-eloquence/fepper-wordpress/blob/dev/backend/wordpress/wp-content/themes/fepper-child/readme.md" target="_blank">
+  child theme</a>. 
 
 ### <a id="templater"></a>Templater
 Fepper's Mustache templates can be translated into templates compatible with 
 your backend. Mustache tags just need to be replaced with tags the backend can 
 use. Put these translations into YAML files named similarly to the Mustache 
 files in `source/_patterns/03-templates`. Follow 
-[this example](https://github.com/electric-eloquence/fepper-drupal/blob/dev/source/_patterns/03-templates/page.yml) 
-for the correct YAML syntax. 
+<a href="https://github.com/electric-eloquence/fepper-drupal/blob/dev/source/_patterns/03-templates/page.yml" target="_blank">
+this example</a> for the correct YAML syntax. 
 
 Follow these rules for setting up keys and values:
 
 * Delete the Mustache curly braces for keys.
 * Trim any exterior whitespace.
 * Leave other control structures within the key, i.e., !#/>^
-* Escape parentheses and question marks with a backslash.
+* Escape parentheses, carets, and question marks with a backslash.
 * Wrap the key in single quotes.
-* Follow the closing quote with a colon, space, pipe, and the numeral 2.
+* Follow the closing quote with a colon, space, pipe, the numeral 2, and a newline `: |2`
 * Indent each line of the value by at least two spaces.
+  * In the Fepper for WordPress project, be mindful of the fact that YAML does 
+    not recognize tabs as valid indentation for values.
+  * Spaces precede tabs in YAML values, but the compiled PHP templates are 
+    entirely tab-indented.
 
 Run `fp syncback` or `fp template` to execute the Templater. 
 
@@ -199,9 +212,11 @@ Run `fp syncback` or `fp template` to execute the Templater.
 * However, the more common inclusion use-case is to leave off the extension, and 
   not recurse. 
 
-[Fepper for Drupal](https://github.com/electric-eloquence/fepper-drupal) and 
-[Fepper for WordPress](https://github.com/electric-eloquence/fepper-wordpress) 
-have working examples of templates compatible with the Templater.
+<a href="https://github.com/electric-eloquence/fepper-drupal" target="_blank">
+Fepper for Drupal</a> and 
+<a href="https://github.com/electric-eloquence/fepper-wordpress" target="_blank">
+Fepper for WordPress</a> have working examples of templates compatible with the 
+Templater.
 
 ### <a id="webserved-directories"></a>Webserved Directories
 When using a backend, assets generally need to be shared with the Fepper 
@@ -252,7 +267,7 @@ be shared across the Stylus CSS preprocessor, browser JavaScripts, and PHP
 backends (and possibly other language backends as well). It ships with these 
 values:
 
-```
+```javascript
 bp_lg_max = -1
 bp_md_max = 1024
 bp_sm_max = 767
@@ -292,7 +307,9 @@ can accept additions, modifications, and deletions per the needs of end users.
 The UI is built by recursive, functional React calls. The recursion tree is 
 reflected by the directory structure containing the modules which compose the 
 UI. To override any given module, copy the directory structure leading to the 
-module from https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html 
+module from 
+<a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html" target="_blank">
+https&colon;//github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html</a> 
 to `source/_ui/index/html`, respective to your implementation. Modifications to 
 modules in that directory will override the corresponding modules in core. 
 Additions (so long as they are correctly nested) will also be recognized.
@@ -302,7 +319,8 @@ is a better practice to componentize scripts this way, generic modifications to
 UI JavaScript can also be added to `source/_scripts/ui-extender.js`.
 
 View All markup can also be overridden by copying the `.mustache` files in 
-https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall 
+<a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall" target="_blank">
+https&colon;//github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall</a> 
 and pasting them to `source/_ui/viewall` (nested correctly). Modifications will 
 then be recognized and displayed in the UI. (No additions are allowed.) Custom 
 View All styles can be added to regular pattern styles in `source/_styles`.
@@ -383,11 +401,8 @@ If your Mac is connected to the Internet through a wire:
 * Change the port number if Fepper is listening on a different port
 
 ### <a id="more-documentation"></a>More Documentation
-* [Default pref.yml](https://github.com/electric-eloquence/fepper-npm/blob/dev/excludes/pref.yml)
-* [Pattern Lab](http://patternlab.io/docs/index.html)
-* [Mustache](https://mustache.github.io/mustache.5.html)
-
-### <a id="contribute"></a>Contribute
-Contributions and bug reports are greatly appreciated!
-
-* Please pull request against the dev branch.
+* <a href="https://github.com/electric-eloquence/fepper-npm/blob/dev/excludes/pref.yml" target="_blank">
+  Default pref.yml</a>
+* <a href="http://patternlab.io/docs/index.html" target="_blank">Pattern Lab</a>
+* <a href="https://mustache.github.io/mustache.5.html" target="_blank">
+  Mustache</a>
