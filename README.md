@@ -1,6 +1,11 @@
-## Fepper
+<p align="center">
+  <img
+    src="https://raw.githubusercontent.com/electric-eloquence/fepper-npm/master/excludes/fepper-branding.png"
+    alt="Fepper"
+  >
+</p>
 
-# A frontend prototyper tool for rapid prototyping of web sites
+<h2 align="center">A frontend prototyper tool for rapid prototyping of websites</h2>
 
 ### Downstream projects
 * [Fepper Base](https://github.com/electric-eloquence/fepper-base) - no 
@@ -32,7 +37,6 @@
 * [Extensions](#extensions)
 * [Mobile Devices](#mobile-devices)
 * [More Documentation](#more-documentation)
-* [Contribute](#contribute)
 
 ### <a id="install"></a>Install
 #### System requirements
@@ -48,8 +52,8 @@
 * In macOS Finder:
   * Double-click `fepper.command`
   * Among other things, this will install the 
-    <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">fepper-cli</a>, 
-    which will give you the `fp` command.
+    <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">
+    fepper-cli</a>, which will give you the `fp` command.
   * If opening for the first time, macOS may warn that it can't be opened 
     because it is from an unidentified  developer.
      * In that case, Ctrl+click `fepper.command` and click "Open"
@@ -147,13 +151,14 @@ will be picked up by all patterns.
 
 ### <a id="static-site-generation"></a>Static Site Generation
 Running `fp static` will generate a complete static site based on the files in 
-`source/_patterns/04-pages`. The site will be viewable at http://localhost:3000/static/. 
-An `index.html` will be generated based on `04-pages-00-homepage` or whatever is 
-defined as the homepage in `_data.json`. If the links are relative and they work 
-correctly in the Fepper UI, they will work correctly in the static site even if 
-the `public/static` directory is copied and renamed. The only caveat is that 
-hard-coded links to other pages in the `patterns` directory must start with 
-`../04-pages-` and not `../../patterns/04-pages-`.
+`source/_patterns/04-pages`. The site will be viewable at 
+http://localhost:3000/static/. An `index.html` will be generated based on 
+`04-pages-00-homepage` or whatever is defined as the homepage in `_data.json`. 
+If the links are relative and they work correctly in the Fepper UI, they will 
+work correctly in the static site even if the `public/static` directory is 
+copied and renamed. The only caveat is that hard-coded links to other pages in 
+the `patterns` directory must start with `../04-pages-` and not 
+`../../patterns/04-pages-`.
 
 ### <a id="the-backend"></a>The Backend
 Fepper can very easily work with a CMS backend such as Drupal or WordPress, 
@@ -164,8 +169,9 @@ enter the relative paths to the appropriate backend directories in `pref.yml`.
 `fp syncback` or `fp frontend-copy` to export your frontend data into your 
 backend web application.
 
-* Be sure that `backend.synced_dirs.assets_dir`, `backend.synced_dirs.scripts_dir`, 
-  and `backend.synced_dirs.styles_dir` are set in `pref.yml`. 
+* Be sure that `backend.synced_dirs.assets_dir`, 
+  `backend.synced_dirs.scripts_dir`, and `backend.synced_dirs.styles_dir` are 
+  set in `pref.yml`. 
 * The above values set in `pref.yml` can be overridden on a per-file basis by 
   similarly named YAML files with similarly named settings. 
 * These YAML files must match the source file's name with exception of the 
@@ -191,13 +197,14 @@ Follow these rules for setting up keys and values:
 * Leave other control structures within the key, i.e., !#/>^
 * Escape parentheses, carets, and question marks with a backslash.
 * Wrap the key in single quotes.
-* Follow the closing quote with a colon, space, pipe, and the numeral 2.
+* Follow the closing quote with a colon, space, pipe, the numeral 2, and a 
+  newline `: |2`
 * Indent each line of the value by at least two spaces.
 
 Run `fp syncback` or `fp template` to execute the Templater. 
 
-* Be sure that `backend.synced_dirs.templates_dir` and `backend.synced_dirs.templates_ext` 
-  are set in `pref.yml`. 
+* Be sure that `backend.synced_dirs.templates_dir` and 
+  `backend.synced_dirs.templates_ext` are set in `pref.yml`. 
 * The default `templates_dir` and `templates_ext` settings in `pref.yml` can be 
   overridden by similarly named settings in the template-specific YAML files. 
 * Templates prefixed by "\_\_" will be ignored by the Templater as will files in 
@@ -233,7 +240,8 @@ upper right, then clicking Code, and then clicking the Mustache tab in the
 bottom pane. The Mustache tags are hot-linked, and if they are written in the 
 verbose syntax, clicking on them will open that Mustache file and display its 
 code in the Fepper UI, with its Mustache tags hot-linked as well. The Mustache 
-tags must be coded in the verbose-pathed manner: `{{> 02-components/00-global/00-header }}`
+tags must be coded in the verbose-pathed manner: 
+`{{> 02-components/00-global/00-header }}`
 
 The path must be correct; however, the `.mustache` extension is optional. The 
 default homepage is a working example.
@@ -305,7 +313,7 @@ reflected by the directory structure containing the modules which compose the
 UI. To override any given module, copy the directory structure leading to the 
 module from 
 <a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html" target="_blank">
-https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html</a> 
+https&colon;//github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/index/html</a> 
 to `source/_ui/index/html`, respective to your implementation. Modifications to 
 modules in that directory will override the corresponding modules in core. 
 Additions (so long as they are correctly nested) will also be recognized.
@@ -316,7 +324,7 @@ UI JavaScript can also be added to `source/_scripts/ui-extender.js`.
 
 View All markup can also be overridden by copying the `.mustache` files in 
 <a href="https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall" target="_blank">
-https://github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall</a> 
+https&colon;//github.com/electric-eloquence/fepper-npm/tree/dev/ui/core/styleguide/viewall</a> 
 and pasting them to `source/_ui/viewall` (nested correctly). Modifications will 
 then be recognized and displayed in the UI. (No additions are allowed.) Custom 
 View All styles can be added to regular pattern styles in `source/_styles`.
@@ -347,10 +355,11 @@ Contributed extensions:
 
 Custom extensions:
 
-* Write custom extensions within an appropriately named directory just under the 
-  `extend/custom` directory.
-* They must include a file ending in "~extend.js" in order for Fepper to 
+* Write custom extensions in the `extend/custom` directory.
+* Extensions require a file ending in "~extend.js" in order for Fepper to 
   recognize their tasks.
+* The "\*~extend.js" file can be directly under `extend/custom`, or nested one 
+  directory deep, but no deeper.
 * Add the tasks to `extend/custom.js` (and `extend/auxiliary/auxiliary_custom.js` 
   if necessary) in order for Fepper to run them.
 
