@@ -1,6 +1,11 @@
-## Fepper for WordPress
+<p align="center">
+  <img
+    src="https://raw.githubusercontent.com/electric-eloquence/fepper-npm/master/excludes/fepper-branding.png"
+    alt="Fepper for WordPress"
+  >
+</p>
 
-# A frontend prototyper tool for rapid prototyping of web sites
+<h2 align="center">A frontend prototyper tool for rapid prototyping of websites</h2>
 
 #### This checkout of Fepper has templates configured for WordPress, along with a [WordPress theme](https://wordpress.org/themes/fepper/) built to accept those templates.
 
@@ -40,8 +45,8 @@
 * In macOS Finder:
   * Double-click `fepper.command`
   * Among other things, this will install the 
-    <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">fepper-cli</a>, 
-    which will give you the `fp` command.
+    <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">
+    fepper-cli</a>, which will give you the `fp` command.
   * If opening for the first time, macOS may warn that it can't be opened 
     because it is from an unidentified  developer.
      * In that case, Ctrl+click `fepper.command` and click "Open"
@@ -144,13 +149,14 @@ will be picked up by all patterns.
 
 ### <a id="static-site-generation"></a>Static Site Generation
 Running `fp static` will generate a complete static site based on the files in 
-`source/_patterns/04-pages`. The site will be viewable at http://localhost:3000/static/. 
-An `index.html` will be generated based on `04-pages-00-homepage` or whatever is 
-defined as the homepage in `_data.json`. If the links are relative and they work 
-correctly in the Fepper UI, they will work correctly in the static site even if 
-the `public/static` directory is copied and renamed. The only caveat is that 
-hard-coded links to other pages in the `patterns` directory must start with 
-`../04-pages-` and not `../../patterns/04-pages-`.
+`source/_patterns/04-pages`. The site will be viewable at 
+http://localhost:3000/static/. An `index.html` will be generated based on 
+`04-pages-00-homepage` or whatever is defined as the homepage in `_data.json`. 
+If the links are relative and they work correctly in the Fepper UI, they will 
+work correctly in the static site even if the `public/static` directory is 
+copied and renamed. The only caveat is that hard-coded links to other pages in 
+the `patterns` directory must start with `../04-pages-` and not 
+`../../patterns/04-pages-`.
 
 ### <a id="the-backend"></a>The Backend
 Fepper can very easily work with a CMS backend such as Drupal or WordPress, 
@@ -161,8 +167,9 @@ enter the relative paths to the appropriate backend directories in `pref.yml`.
 `fp syncback` or `fp frontend-copy` to export your frontend data into your 
 backend web application.
 
-* Be sure that `backend.synced_dirs.assets_dir`, `backend.synced_dirs.scripts_dir`, 
-  and `backend.synced_dirs.styles_dir` are set in `pref.yml`. 
+* Be sure that `backend.synced_dirs.assets_dir`, 
+  `backend.synced_dirs.scripts_dir`, and `backend.synced_dirs.styles_dir` are 
+  set in `pref.yml`. 
 * The above values set in `pref.yml` can be overridden on a per-file basis by 
   similarly named YAML files with similarly named settings. 
 * These YAML files must match the source file's name with exception of the 
@@ -174,7 +181,7 @@ backend web application.
   directory at the root of the source directories. 
 * Frontend code will be synced with a customizable 
   <a href="https://github.com/electric-eloquence/fepper-wordpress/blob/dev/backend/wordpress/wp-content/themes/fepper-child/readme.md" target="_blank">
-  child theme</a>. 
+  child theme</a>. The parent theme will not be modified.
 
 ### <a id="templater"></a>Templater
 Fepper's Mustache templates can be translated into templates compatible with 
@@ -191,17 +198,18 @@ Follow these rules for setting up keys and values:
 * Leave other control structures within the key, i.e., !#/>^
 * Escape parentheses, carets, and question marks with a backslash.
 * Wrap the key in single quotes.
-* Follow the closing quote with a colon, space, pipe, the numeral 2, and a newline `: |2`
+* Follow the closing quote with a colon, space, pipe, the numeral 2, and a 
+  newline `: |2`
 * Indent each line of the value by at least two spaces.
-  * In the Fepper for WordPress project, be mindful of the fact that YAML does 
-    not recognize tabs as valid indentation for values.
+  * In Fepper for WordPress, be mindful of the fact that YAML does not recognize 
+    tabs as valid indentation for values.
   * Spaces precede tabs in YAML values, but the compiled PHP templates are 
     entirely tab-indented.
 
 Run `fp syncback` or `fp template` to execute the Templater. 
 
-* Be sure that `backend.synced_dirs.templates_dir` and `backend.synced_dirs.templates_ext` 
-  are set in `pref.yml`. 
+* Be sure that `backend.synced_dirs.templates_dir` and 
+  `backend.synced_dirs.templates_ext` are set in `pref.yml`. 
 * The default `templates_dir` and `templates_ext` settings in `pref.yml` can be 
   overridden by similarly named settings in the template-specific YAML files. 
 * Templates prefixed by "\_\_" will be ignored by the Templater as will files in 
@@ -237,7 +245,8 @@ upper right, then clicking Code, and then clicking the Mustache tab in the
 bottom pane. The Mustache tags are hot-linked, and if they are written in the 
 verbose syntax, clicking on them will open that Mustache file and display its 
 code in the Fepper UI, with its Mustache tags hot-linked as well. The Mustache 
-tags must be coded in the verbose-pathed manner: `{{> 02-components/00-global/00-header }}`
+tags must be coded in the verbose-pathed manner: 
+`{{> 02-components/00-global/00-header }}`
 
 The path must be correct; however, the `.mustache` extension is optional. The 
 default homepage is a working example.
@@ -351,10 +360,11 @@ Contributed extensions:
 
 Custom extensions:
 
-* Write custom extensions within an appropriately named directory just under the 
-  `extend/custom` directory.
-* They must include a file ending in "~extend.js" in order for Fepper to 
+* Write custom extensions in the `extend/custom` directory.
+* Extensions require a file ending in "~extend.js" in order for Fepper to 
   recognize their tasks.
+* The "\*~extend.js" file can be directly under `extend/custom`, or nested one 
+  directory deep, but no deeper.
 * Add the tasks to `extend/custom.js` (and `extend/auxiliary/auxiliary_custom.js` 
   if necessary) in order for Fepper to run them.
 
