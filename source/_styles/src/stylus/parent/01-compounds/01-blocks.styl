@@ -16,9 +16,6 @@
 		color: $white
 	@media all and (min-width: $bp-small) and (max-width: $bp-sm-max)
 		width: "calc(50% - %s)" % $space-quarter
-.post-list article[id^="post-"],
-.block-hoagie
-	margin-bottom: $space
 article[id^="post-"],
 .block-hoagie
 	@extend .cf
@@ -43,12 +40,15 @@ article[id^="post-"],
 			.headline
 				float: right
 				padding: 0 $space
-				width: 70%
+				width: $column-width-wide
 			.b-thumb
-				width: 30%
+				width: $column-width-narrow
 			.b-text
 				float: right
 				padding: 0 $space
-				width: 70%
+				width: $column-width-wide
+.post-list article[id^="post-"],
+.block-hoagie
+	margin-bottom: $space
 .hoagies-two-col
 	margin-bottom: 0
