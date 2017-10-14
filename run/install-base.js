@@ -1,53 +1,68 @@
 'use strict';
 
-const exec = require('child_process').exec;
+const spawnSync = require('child_process').spawnSync;
 const fs = require('fs');
 const path = require('path');
 
-const sourceDir = 'source';
+const conf = {};
+const confUiFile = './patternlab-config.json';
 
-new Promise(function (resolve) {
-  // First, create empty source dir so the postinstall script doesn't write the main profile there.
-  if (!fs.existsSync(sourceDir)) {
-    fs.mkdirSync(sourceDir);
+let sourceDir;
+
+if (fs.existsSync(confUiFile)) {
+  const confUiStr = fs.readFileSync(confUiFile, 'utf8');
+
+  try {
+    conf.ui = JSON.parse(confUiStr);
+  }
+  catch (err) {
+    throw err;
   }
 
-  // Then, run npm install.
-  exec('npm install', (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
+  if (conf.ui) {
+    sourceDir = conf.ui.paths.source.root;
+  }
+}
 
-    if (stderr) {
+// Conf file may not exists at this point of installation. Hard-code in that case.
+else {
+  sourceDir = 'source';
+}
 
-      /* eslint-disable no-console */
-      console.log(stderr);
-    }
-    console.log(stdout);
+// First, create empty source dir so the postinstall script doesn't write the main profile there.
+if (!fs.existsSync(sourceDir)) {
+  fs.mkdirSync(sourceDir);
+}
 
-    /* eslint-enable no-console */
-    resolve();
-  });
-})
-.then(function () {
-  // Then, delete the empty source dir so a new one can be copied over.
-  fs.rmdirSync(sourceDir);
+// Then, run npm install.
+spawnSync('npm', ['install'], {stdio: 'inherit'});
 
-  // Then, copy over the base profile source dir.
-  var binGulp = path.resolve('node_modules', '.bin', 'gulp');
-  exec(`${binGulp} --gulpfile node_modules/fepper/tasker.js install:copy-base`, (err, stdout, stderr) => {
-    if (err) {
-      throw err;
-    }
+// Check if source dir is already populated.
+const sourceDirContent = fs.readdirSync(sourceDir);
 
-    fs.writeFileSync('install.log', stdout);
-    if (stderr) {
+// Quit if already populated.
+if (sourceDirContent.length) {
+  throw `${sourceDir} already has content! Aborting base install!`;
+}
 
-      /* eslint-disable no-console */
-      console.log(stderr);
+// Delete the empty source dir so a new one can be copied over.
+fs.rmdirSync(sourceDir);
 
-      /* eslint-enable no-console */
-      fs.appendFileSync('install.log', stderr);
-    }
-  });
-});
+// Copy over the base profile source dir.
+const binGulp = path.resolve('node_modules', '.bin', 'gulp');
+const spawnedObj =
+  spawnSync(binGulp, ['--gulpfile', 'node_modules/fepper/tasker.js', 'install:copy-base'], {stdio: 'inherit'});
+
+// Output to install.log.
+const installLog = 'install.log';
+
+fs.writeFileSync(installLog, '');
+
+if (spawnedObj.stderr) {
+  fs.appendFileSync(installLog, `${spawnedObj.stderr}\n`);
+}
+
+fs.appendFileSync(installLog, `Process exited with status ${spawnedObj.status}.\n`);
+
+// Compile UI.
+spawnSync('node', ['node_modules/fepper/index.js', 'ui:compile'], {stdio: 'inherit'});
