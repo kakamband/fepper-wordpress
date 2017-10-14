@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 const spawnSync = require('child_process').spawnSync;
@@ -32,20 +33,41 @@ else {
 // First, create empty source dir so the postinstall script doesn't write the main profile there.
 if (!fs.existsSync(sourceDir)) {
   fs.mkdirSync(sourceDir);
+  fs.mkdirSync(`${sourceDir}/_data`);
+  fs.mkdirSync(`${sourceDir}/_patterns`);
+  fs.mkdirSync(`${sourceDir}/_styles`);
+  fs.writeFileSync(`${sourceDir}/_data/data.json`, '{}');
+  fs.writeFileSync(`${sourceDir}/_data/listitems.json`, '{}');
 }
 
-// Then, run npm install.
-spawnSync('npm', ['install'], {stdio: 'inherit'});
+// Return if node_modules is already installed. (Avoid infinite loops!)
+if (fs.existsSync('node_modules')) {
+  console.warn('Fepper is already installed! Aborting!');
 
-// Check if source dir is already populated.
-const sourceDirContent = fs.readdirSync(sourceDir);
-
-// Quit if already populated.
-if (sourceDirContent.length) {
-  throw `${sourceDir} already has content! Aborting base install!`;
+  return;
 }
 
-// Delete the empty source dir so a new one can be copied over.
+// Else, run npm install.
+else {
+  spawnSync('npm', ['install'], {stdio: 'inherit'});
+}
+
+// Check if patterns dir is already populated.
+const patternsDirContent = fs.readdirSync(`${sourceDir}/_patterns`);
+
+// Return if already populated.
+if (patternsDirContent.length) {
+  console.warn(`${sourceDir} dir already has content! Aborting base install!`);
+
+  return;
+}
+
+// Delete the source dir so a new one can be copied over.
+fs.unlinkSync(`${sourceDir}/_data/listitems.json`);
+fs.unlinkSync(`${sourceDir}/_data/data.json`);
+fs.rmdirSync(`${sourceDir}/_styles`);
+fs.rmdirSync(`${sourceDir}/_patterns`);
+fs.rmdirSync(`${sourceDir}/_data`);
 fs.rmdirSync(sourceDir);
 
 // Copy over the base profile source dir.
