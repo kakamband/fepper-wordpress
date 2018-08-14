@@ -39,8 +39,8 @@
     "node": ">=8.5.0"
   },
   "devDependencies": {
-    "fepper": "0.26.0-rc.3",
-    "fs-extra": "^0.22.1",
+    "fepper": "^0.26.0-rc.14",
+    "fs-extra": "^7.0.0",
     "gulp": "3.9.1",
     "gulp-load-plugins": "^1.5.0",
     "js-yaml": "^3.12.0",
