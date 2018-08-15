@@ -7,7 +7,7 @@
 
 <h2 align="center">A frontend prototyper tool for rapid prototyping of websites</h2>
 
-#### This checkout of Fepper has templates configured for WordPress, along with a [WordPress theme](https://wordpress.org/themes/fepper/) built to accept those templates.
+#### This distribution of Fepper has templates configured for WordPress, along with a [WordPress theme](https://wordpress.org/themes/fepper/) built to accept those templates.
 
 * [Main project](https://github.com/electric-eloquence/fepper)
 
