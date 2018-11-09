@@ -4,8 +4,7 @@
   "scripts": {
     "install-base": "node run/install-base.js",
     "install-windows": "node run/install-windows.js",
-    "postinstall": "node run/install.js",
-    "update": "node run/update.js"
+    "postinstall": "node run/install.js"
   },
   "repository": {
     "type": "git",
@@ -36,7 +35,7 @@
     "node": ">=8.5.0"
   },
   "devDependencies": {
-    "fepper": "0.28.1-rc.3",
+    "fepper": "0.28.2-rc.0",
     "fs-extra": "^7.0.0",
     "gulp": "3.9.1",
     "gulp-load-plugins": "^1.5.0",
