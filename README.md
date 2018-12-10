@@ -39,7 +39,7 @@
 #### System requirements
 
 * Unix-like or Windows OS.
-* Minimum supported Node.js version 8.5.0.
+* Minimum supported Node.js version 8.10.0.
 * Minimum WordPress version 4.5.
 
 #### Simplest way to get started
