@@ -4,7 +4,7 @@
   "scripts": {
     "install-base": "node run/install-base.js",
     "postinstall": "node run/install.js",
-    "start": "node node_modules/fepper/index.js"
+    "start": "fepper"
   },
   "repository": {
     "type": "git",
@@ -35,11 +35,11 @@
     "node": ">=8.10.0"
   },
   "devDependencies": {
-    "fepper": "^0.30.2",
-    "fepper-utils": "^1.1.5",
+    "fepper": "^0.30.4",
+    "fepper-utils": "^1.1.6",
     "fs-extra": "^7.0.0",
     "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts@3.9.5",
-    "js-yaml": "^3.12.0",
+    "js-yaml": "^3.12.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^2.2.1"
   }
