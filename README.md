@@ -8,8 +8,8 @@
 <h2 align="center">A frontend prototyper tool for rapid prototyping of websites</h2>
 
 [![Known Vulnerabilities](https://snyk.io/test/github/electric-eloquence/fepper-wordpress/badge.svg)](https://snyk.io/test/github/electric-eloquence/fepper-wordpress)
-[![Mac/Linux Build Status](https://img.shields.io/travis/electric-eloquence/fepper-wordpress.svg)](https://travis-ci.org/electric-eloquence/fepper-wordpress)
-[![Windows Build Status](https://img.shields.io/appveyor/ci/e2tha-e/fepper-wordpress.svg?label=appveyor)](https://ci.appveyor.com/project/e2tha-e/fepper-wordpress)
+[![Mac/Linux Build Status](https://img.shields.io/travis/electric-eloquence/fepper-wordpress.svg?label=mac%20%26%20linux)](https://travis-ci.org/electric-eloquence/fepper-wordpress)
+[![Windows Build Status](https://img.shields.io/appveyor/ci/e2tha-e/fepper-wordpress.svg?label=windows)](https://ci.appveyor.com/project/e2tha-e/fepper-wordpress)
 ![Node Version](https://img.shields.io/node/v/fepper.svg)
 [![License](https://img.shields.io/github/license/electric-eloquence/fepper-wordpress.svg)](https://raw.githubusercontent.com/electric-eloquence/fepper-wordpress/release/LICENSE)
 
@@ -63,7 +63,8 @@
     * <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">
       fepper-cli</a>, which will give you the `fp` command.
   * If opening for the first time, macOS may warn that it can't be opened 
-    because it is from an unidentified developer.
+    because it is from an unidentified 
+    developer.&nbsp;<a href="https://gist.github.com/e2tha-e/72364ca766cf5d2d1a732b6af4f3b7a8" target="_blank">*</a>
     * In this case, ctrl+click `fepper.command` and click "Open".
     * In the following prompt, click "Open" to confirm that you're sure you 
       want to open it.
@@ -82,7 +83,8 @@
 #### Windows install
 
 * PowerShell >= 3.0 required.
-* In File Explorer, double-click `fepper.vbs`.
+* In File Explorer, double-click 
+  `fepper.vbs`.&nbsp;<a href="https://gist.github.com/e2tha-e/72364ca766cf5d2d1a732b6af4f3b7a8" target="_blank">*</a>
   * If Node.js is not installed, this will install it.
   * After Node.js installation, double-click `fepper.vbs` again.
     * This will install <a href="https://www.npmjs.com/package/fepper-cli" target="_blank">
@@ -289,7 +291,7 @@ data parameters as follows:
 {{> 02-components/00-global/99-example(greeting: 'Hello', place: 'World') }}
 ```
 
-02-components/00-global/99-example.mustache:
+##### 02-components/00-global/99-example.mustache:
 
 ```
 {{ greeting }} {{ place }}
@@ -337,7 +339,7 @@ bp_xx_min = 0
 It cannot contain comments, semi-colons, curly braces, etc. It is 
 straightforward to import and use these variables in Stylus and JavaScript. PHP 
 must import them with `parse_ini_file()`. Fepper tries to be agnostic about CSS 
-processors and tries to keep the amount of NPMs to download to a minimum. 
+processors and tries to keep the amount of npms to download to a minimum. 
 However, since Stylus allows for this easy sharing of variables, most Fepper 
 distros ship with the 
 <a href="https://www.npmjs.com/package/fp-stylus" target="_blank">fp-stylus</a> 
@@ -443,7 +445,7 @@ modified when updating Fepper.
 
 Contributed extensions:
 
-* Install and update contributed extensions with NPM in the `extend` directory.
+* Install and update contributed extensions with npm in the `extend` directory.
 * Add the tasks to `extend/contrib.js` (and `extend/auxiliary/auxiliary_contrib.js` 
   if necessary) in order for Fepper to run them.
 * Contributed Fepper extensions can be found at https://www.npmjs.com/ by 
@@ -489,7 +491,7 @@ workarounds for this:
 
 Common utilty functions for custom extensions are available from the
 <a href="https://www.npmjs.com/package/fepper-utils" target="_blank">Fepper Utils</a>
-NPM. Its API documentation can be viewed by following the link.
+npm. Its API documentation can be viewed by following the link.
 
 ### <a id="express-app"></a>Express App
 
