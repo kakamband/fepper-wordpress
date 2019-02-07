@@ -1,5 +1,9 @@
 # Fepper Changelog
 
+### v0.10.2
+* Bumped some dependencies to new minor versions
+* Better frontend-copier logic for non-existent backend directory
+
 ### v0.10.1
 * Moving dependencies from distro to fepper-npm
 * Improved HTML beautification
