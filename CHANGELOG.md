@@ -1,5 +1,10 @@
 # Fepper Changelog
 
+### v0.11.0
+* Exposing instance\_file preference for subclassing Fepper class
+* Fixed HTML for viewalls
+* Added default gulpfile.js for running `gulp` command instead of `fp`
+
 ### v0.10.3
 * Dependency updates
 * Added text color highlights to console log messages
