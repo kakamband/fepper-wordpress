@@ -1,5 +1,5 @@
 {
-  "version": "0.11.1",
+  "version": "0.11.2-rc.0",
   "description": "Fepper: a Front End Prototyper tool for rapid prototyping of web sites",
   "scripts": {
     "install-base": "node run/install-base.js",
@@ -35,9 +35,9 @@
     "node": ">=8.16.0"
   },
   "devDependencies": {
-    "fepper": "^0.32.2",
-    "fepper-utils": "^1.2.2",
+    "fepper": "^0.32.3-rc.0",
+    "fepper-utils": "^1.2.3",
     "fs-extra": "^7.0.1",
-    "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts@3.9.5"
+    "gulp": "https://github.com/electric-eloquence/gulp/tarball/v3-lts@3.9.7"
   }
 }
