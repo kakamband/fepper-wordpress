@@ -7,11 +7,20 @@
 
 <h2 align="center">A frontend prototyper tool for rapid prototyping of websites</h2>
 
-[![Known Vulnerabilities](https://snyk.io/test/github/electric-eloquence/fepper-wordpress/badge.svg)](https://snyk.io/test/github/electric-eloquence/fepper-wordpress)
-[![Mac/Linux Build Status](https://img.shields.io/travis/electric-eloquence/fepper-wordpress.svg?label=mac%20%26%20linux)](https://travis-ci.org/electric-eloquence/fepper-wordpress)
-[![Windows Build Status](https://img.shields.io/appveyor/ci/e2tha-e/fepper-wordpress.svg?label=windows)](https://ci.appveyor.com/project/e2tha-e/fepper-wordpress)
+[![Known Vulnerabilities][snyk-image]][snyk-url]
+[![Mac/Linux Build Status][travis-image]][travis-url]
+[![Windows Build Status][appveyor-image]][appveyor-url]
 ![Node Version](https://img.shields.io/node/v/fepper.svg)
-[![License](https://img.shields.io/github/license/electric-eloquence/fepper-wordpress.svg)](https://raw.githubusercontent.com/electric-eloquence/fepper-wordpress/release/LICENSE)
+[![License][license-image]][license-url]
+
+### BROWSER SUPPORT NOTICE!
+
+As of v0.12.0, the Fepper UI will require browser support for 
+<a href="https://github.com/tc39/proposal-class-fields#implementations" target="_blank">
+JavaScript class fields</a>. Please click the link to see which browsers are 
+compatible. (Support for just public instance fields is good enough.) This only 
+pertains to the UI. Patterns and their destinations can be as backward-compatible 
+or as experimental as you wish to make them.
 
 #### This distribution of Fepper has templates configured for WordPress, along with a [WordPress theme](https://wordpress.org/themes/fepper/) built to accommodate these templates.
 
@@ -45,7 +54,7 @@
 #### System requirements
 
 * Unix-like or Windows OS.
-* Minimum supported Node.js version 8.16.0.
+* Minimum supported Node.js version 12.0.0.
 * Minimum WordPress version 4.5.
 
 #### Simplest way to get started
@@ -135,9 +144,11 @@ Run `fp update` to download and install the latest updates.
   * `fp syncback` - combine frontend-copy and template tasks.
   * `fp template` - translate templates in 03-templates for the backend and copy 
     them there.
-  * `fp ui:help` - print documentation of Fepper UI tasks. Any one of those 
-    tasks is also runnable.
+  * `fp ui:help` - print Fepper UI tasks and descriptions. Any one of these 
+    tasks is runnable on the command line.
   * `fp version` - print versions of Fepper CLI, Fepper NPM, and Fepper UI.
+  * `fp extend:help` - print Fepper extension tasks and descriptions. Any one of 
+    these tasks is runnable on the command line.
 * Enter a `-d` or `--debug` switch to run the command in `debug` mode.
 * If using Git for version control, directories named "ignore" will be ignored.
 
@@ -202,8 +213,8 @@ backend web application.
   * These YAML files must match the source file's name with the exception of the 
     extension. 
   * The extension must be `.yml`
-  * The overriding property must only contain the lowest level key-value, not 
-    the entire hierarchy, i.e., only `assets_dir`, not 
+  * The overriding property must only contain the lowest level key:value, not 
+    the entire hierarchy, e.g., only `assets_dir`, not 
     `backend.synced_dirs.assets_dir`. 
 * Asset, script, and style files prefixed by "\_\_" will be ignored by 
   `fp syncback` and `fp frontend-copy` as will files in the `_nosync` 
@@ -654,3 +665,15 @@ As a reminder, the viewport sizes can be customized in `source/_scripts/src/vari
 * <a href="https://mustache.github.io/mustache.5.html" target="_blank">
   Mustache</a>
 * <a href="https://www.npmjs.com/package/fepper-utils" target="_blank">Fepper Utils</a>
+
+[snyk-image]: https://snyk.io//test/github/electric-eloquence/fepper-wordpress/master/badge.svg
+[snyk-url]: https://snyk.io//test/github/electric-eloquence/fepper-wordpress/master
+
+[travis-image]: https://img.shields.io/travis/electric-eloquence/fepper-wordpress.svg?label=mac%20%26%20linux
+[travis-url]: https://travis-ci.org/electric-eloquence/fepper-wordpress
+
+[appveyor-image]: https://img.shields.io/appveyor/ci/e2tha-e/fepper-wordpress.svg?label=windows
+[appveyor-url]: https://ci.appveyor.com/project/e2tha-e/fepper-wordpress
+
+[license-image]: https://img.shields.io/github/license/electric-eloquence/fepper-wordpress.svg
+[license-url]: https://raw.githubusercontent.com/electric-eloquence/fepper-wordpress/master/LICENSE
