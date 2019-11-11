@@ -10,7 +10,7 @@
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![Mac/Linux Build Status][travis-image]][travis-url]
 [![Windows Build Status][appveyor-image]][appveyor-url]
-![Node Version](https://img.shields.io/node/v/fepper.svg)
+![Node Version][node-version-image]
 [![License][license-image]][license-url]
 
 ### BROWSER SUPPORT NOTICE!
@@ -669,11 +669,13 @@ As a reminder, the viewport sizes can be customized in `source/_scripts/src/vari
 [snyk-image]: https://snyk.io//test/github/electric-eloquence/fepper-wordpress/master/badge.svg
 [snyk-url]: https://snyk.io//test/github/electric-eloquence/fepper-wordpress/master
 
-[travis-image]: https://img.shields.io/travis/electric-eloquence/fepper-wordpress.svg?label=mac%20%26%20linux
+[travis-image]: https://img.shields.io/travis/electric-eloquence/fepper-wordpress/master.svg?label=mac%20%26%20linux
 [travis-url]: https://travis-ci.org/electric-eloquence/fepper-wordpress
 
-[appveyor-image]: https://img.shields.io/appveyor/ci/e2tha-e/fepper-wordpress.svg?label=windows
+[appveyor-image]: https://img.shields.io/appveyor/ci/e2tha-e/fepper-wordpress/master.svg?label=windows
 [appveyor-url]: https://ci.appveyor.com/project/e2tha-e/fepper-wordpress
+
+[node-version-image]: https://img.shields.io/node/v/fepper.svg
 
 [license-image]: https://img.shields.io/github/license/electric-eloquence/fepper-wordpress.svg
 [license-url]: https://raw.githubusercontent.com/electric-eloquence/fepper-wordpress/master/LICENSE
