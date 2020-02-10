@@ -1,5 +1,12 @@
 # Fepper Changelog
 
+### v0.13.1
+* Keeping original template whitespacing for output to .mustache file
+* Better z-indexing of UI
+* Fixed writing of patterns if cleanPublic true
+* Fixed livereloading of .mustache updates
+* Switched from xxhash to md4 for non-cryptographic hashing
+
 ### v0.13.0
 * Major performance improvements
 * Switched viewall rendering from server to client
