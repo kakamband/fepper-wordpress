@@ -1,4 +1,5 @@
-$meta-width = 12em
+$img-size-xs = 8.75rem
+$meta-width = 17rem
 .comments
 	border-top: 1px solid $gray-light-3
 	margin-top: 2em
@@ -14,75 +15,70 @@ $meta-width = 12em
 	.comment-meta
 		float: left
 		min-height: 9em
+		padding-right: $space
 		width: $meta-width
-		img
+		img,
+		svg
 			display: block
 			border: 1px solid $gray-light-2
-			margin-bottom: 0.5em
-			width: 6.25em
+			margin-bottom: 0.25em
+			width: 5em
+			height: 5em
 		.fn,
-		.comment-author span,
+		.says,
 		.comment-metadata
-			font-size: 0.75em
-			line-height: 1
-		.fn,
+			font-size: 1.2rem
 		.comment-metadata
-			margin-left: 2px
+			line-height: 1.6rem
+			margin-top: 0.2rem
+	.comment-author
+		line-height: 1
 	.comment-meta + .comment-content
 		margin-left: $meta-width
 		width: "calc(100% - %s)" % $meta-width
 		p
 			margin: 0
 	.comment-meta + .comment-content + .reply
-		margin: 0.25em 0 0 12em
+		margin: 0.25em 0 0 $meta-width
 		&::before
 			content: "•"
-			margin-left: 0.25em
-		a
-			padding-left: 0.75em
 	.children
 		border-bottom: 1px solid $gray-light-3
 		border-left: 1px solid $gray-light-3
 		margin-left: 0.75em
-	.comment-respond
-		padding-top: 1em
-		@media all and (max-width: $bp-sm-max)
-			padding-bottom: 0.25em
+	#reply-title
+		font-size: 1.5em
 	@media all and (max-width: $bp-xs-max)
-		$img-size-xs = 8.75rem
 		.comment
 			margin: 0
-			padding: 0
-		.comment:last-of-type
-			padding-bottom: 0.5em
 		.comment-body
 			padding-bottom: 0
 		.comment-meta
 			float: none
-			min-height: $img-size-xs
-			margin-bottom: 0.25em
-			position: relative
+			min-height: auto
+			padding: 0
 			width: 100%
-			display: flex
-			flex-direction: column
-			justify-content: flex-end
-			> div
-				width: "calc(100% - %s - 0.2rem)" % $img-size-xs
-			.comment-author
-				img
-					margin-bottom: 0
-					position: absolute
-					top: 0
-					right: 0
-			.fn,
-			.comment-metadata
-				margin-left: 0
+		.comment-author
+			position: relative
+			img,
+			svg
+				float: left
+				margin-right: $space-half
+			.fn
+				margin: 0
+				&::before
+					content: "\A\A"
+					white-space: pre
+		.comment-meta + .comment-content
+			clear: both
 		.comment-meta + .comment-content,
 		.comment-meta + .comment-content + .reply
 			margin-left: 0
 			width: auto
-		.comment-metadata
-			margin-bottom: 0.5em
+		.comment-meta + .comment-content + .reply
+			float: right
+			margin-top: 0
+			margin-right: $space-half
 		.children
 			.comment-body
 				> *
