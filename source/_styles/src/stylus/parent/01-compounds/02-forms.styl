@@ -1,5 +1,5 @@
 form > div
-	margin-bottom: $space
+	margin-bottom: 1em
 form ol, form ul
 	list-style: none
 	margin-left: 0
@@ -36,9 +36,11 @@ input[type="search"]
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration
 	-webkit-appearance: none
-@media all and (max-width: $bp-xs-max)
-	textarea
+textarea
+	@media all and (max-width: $bp-xs-max)
 		width: 100%
+	@media all and (min-width: $bp-small)
+		max-width: 100%
 // Validation
 .required
 	color: $error

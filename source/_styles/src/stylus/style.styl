@@ -144,6 +144,11 @@ a img.aligncenter
 .gallery-columns-8 .gallery-caption,
 .gallery-columns-9 .gallery-caption
 	display: none
+// Search.
+.search-results
+	#main
+		p
+			margin-top: 0
 // Various and sundry.
 .page-title
 	margin-bottom: 0.5em
@@ -162,7 +167,7 @@ a img.aligncenter
 	.page-link
 		margin: 0 0.5em
 	> .page-link
-		color: $gray-light-4
+		color: $gray-light-3
 .post-navigation
 	margin-top: 1em
 	a
@@ -172,6 +177,7 @@ a img.aligncenter
 		.post-title
 			text-decoration: underline
 .page-numbers.current
+	// TODO: Investigate if this is still necessary.
 	color: $gray
 // Necessary to offset WordPress admin-bar styles which conflict against the body position: relative rule.
 $admin-bar-height = 4.6rem
