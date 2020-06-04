@@ -9,13 +9,13 @@
 	function mobileNavToggle( toggler, toggled ) {
 		var $toggler = $( toggler );
 
-		if ( !$toggler.length ) {
+		if ( ! $toggler.length ) {
 			return;
 		}
 
 		var $toggled = $( toggled );
 
-		if ( !$toggled.length ) {
+		if ( ! $toggled.length ) {
 			$toggler.hide();
 			return;
 		}
@@ -25,10 +25,13 @@
 
 			$toggled.toggleClass( 'toggle-open' );
 
-			var togglerRect = $toggler[0].getBoundingClientRect();
+			var $body = $( 'body' );
+			var cssTop = 'calc(' + $body.css( 'padding-top' ) + ' + ' + $toggler.outerHeight() + 'px)';
 
 			if ( $toggled.hasClass( 'toggle-open' ) ) {
-				$toggled.css( 'top', togglerRect.bottom + 'px');
+				$toggled.css( 'top', cssTop );
+			} else {
+				$toggled.css( 'top', '' );
 			}
 
 			if ( toggler === '.nav-toggle-search' ) {
@@ -37,13 +40,13 @@
 			} else if ( toggler === '.nav-toggle-menu' ) {
 				var $header = $( '.header' );
 
-				if ( !$header.length ) {
+				if ( ! $header.length ) {
 					return;
 				}
 
 				var $headerLinks = $header.find( 'a' );
 
-				if ( !$headerLinks.length ) {
+				if ( ! $headerLinks.length ) {
 					return;
 				}
 
@@ -70,6 +73,32 @@
 	}
 
 	$( document ).ready( function() {
+		function resetFooterHeight() {
+			var $body = $( 'body' );
+			var $footer = $( 'footer[role="contentinfo"]' );
+
+			$footer.css( 'height', 'auto' );
+
+			var footerHeight = $footer.length ? $footer.outerHeight() + 'px' : '';
+
+			if ( $body.hasClass( 'admin-bar' ) ) {
+				var htmlMarginTop = $( 'html' ).css( 'margin-top' );
+				var offsetHeight = $body.css( 'top' );
+
+				$body.css( 'min-height', 'calc(100vh - ' + htmlMarginTop + ')' );
+				$footer.css( 'bottom', offsetHeight );
+
+				if ( ! parseInt( offsetHeight, 10 ) ) {
+					$body.css( 'padding-bottom', htmlMarginTop );
+					$footer.css( 'bottom', offsetHeight );
+				}
+			} else {
+				$body.css( 'padding-bottom', footerHeight );
+			}
+		}
+
+		resetFooterHeight();
+
 		mobileNavToggle( '.nav-toggle-search', '.header .search-form' );
 		mobileNavToggle( '.nav-toggle-menu', '.header div.nav, .header div[class^="menu-"]' );
 
@@ -79,13 +108,15 @@
 
 			if ( $searchBlock.length && $searchBlock.hasClass( 'toggle-open' ) ) {
 				$searchBlock.removeClass( 'toggle-open' );
-				$searchBlock.css( 'top', '0' );
+				$searchBlock.css( 'top', '' );
 			}
 
 			if ( $mainMenuBlock.length && $mainMenuBlock.hasClass( 'toggle-open' ) ) {
 				$mainMenuBlock.removeClass( 'toggle-open' );
-				$mainMenuBlock.css( 'top', '0' );
+				$mainMenuBlock.css( 'top', '' );
 			}
+
+			resetFooterHeight();
 		} );
 	} );
 
