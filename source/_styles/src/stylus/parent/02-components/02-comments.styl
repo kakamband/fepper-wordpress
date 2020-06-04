@@ -1,10 +1,9 @@
 $img-size-xs = 8.75rem
 $meta-width = 17rem
 .comments
-	border-top: 1px solid $gray-light-3
-	margin-top: 2em
-	.section-title
-		margin: 0.625em 0 0
+	border-top: 1px solid $gray-light-2
+	margin-top: 1.5em
+	padding-top: 1em
 	.comment
 		min-height: 9em
 		padding: 0.75em 0 0.5em
@@ -19,11 +18,9 @@ $meta-width = 17rem
 		width: $meta-width
 		img,
 		svg
-			display: block
-			border: 1px solid $gray-light-2
-			margin-bottom: 0.25em
+			border: 1px solid $gray-light-1
+			margin-bottom: 0.5rem
 			width: 5em
-			height: 5em
 		.fn,
 		.says,
 		.comment-metadata
@@ -41,10 +38,10 @@ $meta-width = 17rem
 	.comment-meta + .comment-content + .reply
 		margin: 0.25em 0 0 $meta-width
 		&::before
-			content: "•"
+			content: "• "
 	.children
-		border-bottom: 1px solid $gray-light-3
-		border-left: 1px solid $gray-light-3
+		border-bottom: 1px solid $gray-light-2
+		border-left: 1px solid $gray-light-2
 		margin-left: 0.75em
 	#reply-title
 		font-size: 1.5em
