@@ -4,12 +4,11 @@
 		clear: both
 		overflow: hidden
 		a
-			color: $black
 			display: block
 			&:hover, &:focus
 				color: $gray
 		@media all and (max-width: $bp-sm-max)
-			background: $white-translucent
+			background-color: $white-translucent
 			max-height: 0
 			position: absolute
 			left: 0
@@ -20,7 +19,10 @@
 			li
 				border-top: 1px solid $gray-light-2
 			a
+				color: $gray-dark
 				padding: 0.7rem $space
+				&:hover, &:focus
+					color: $gray
 				&:active
 					background-color: $gray-light-1
 			.children,
@@ -28,9 +30,9 @@
 				li
 					padding-left: 1.2rem
 		@media all and (min-width: $bp-med)
-			background: $white
 			clear: none
 			float: left
+			margin: $menu-margin 0
 			&.fixed
 				border-bottom: 1px solid $gray-light-2
 				position: fixed
@@ -41,49 +43,66 @@
 				display: flex
 				flex-wrap: wrap
 				align-items: center
-				min-height: $nav-toggle-height + 0.2rem
+				> .page_item_has_children,
+				> .menu-item-has-children
+					> .children,
+					> .sub-menu
+						margin-top: $menu-margin
+						max-height: 0
+						overflow: hidden
+						padding-top: 0
+						position: absolute
+						transition: max-height 0.3s ease
+						z-index: 2
+					&:hover > a,
+					> a:focus
+						+ .children,
+						+ .sub-menu
+							// Margin and padding must be switched from unhovered/unfocused state
+							// so unexpanded items don't interfere with expanded items.
+							margin-top: 0
+							max-height: 100vh
+							padding-top: $menu-margin
 			li
 				padding: 0 1em
 			a
-				padding: 0.2rem 0
-			> ul > li > .children,
-			> ul > li > .sub-menu
-				background: $white
-				position: absolute
-			> ul > .page_item_has_children .page_item_has_children li,
-			> ul > .menu-item-has-children .menu-item-has-children li
-				padding-left: $space-half
+				padding: 0.1rem 0
 			.page_item_has_children,
 			.menu-item-has-children
+				li
+					background-color: $white
+					min-width: 11rem
+					padding: 0 1.2rem
+				a
+					// This makes expanded menu horizontal borders align with header border bottom.
+					padding: 0.05rem 0
 				> a::after
-					color: $gray
 					content: "▼"
 					font-size: 0.75em
 					margin-left: $space-half
-				&:hover
-					.children,
-					.sub-menu
-						max-height: 100vh
 			.children,
 			.sub-menu
-				max-height: 0
-				overflow: hidden
-				transition: max-height 0.3s ease
-				z-index: 2
 				li
-					border: 1px solid $gray-light-1
+					border: 1px solid $gray-light-2
 					border-bottom: 0
 					float: none
 					width: 100%
 				li:last-child
-					border-bottom: 1px solid $gray-light-1
+					border-bottom: 1px solid $gray-light-2
+				a
+					color: $gray-dark
+					&:hover, &:focus
+						color: $gray
 				.children,
 				.sub-menu
-					background: transparent
+					background-color: transparent
 					li
 						border-right: 0
 						border-bottom: 0
 						border-left: 0
+	div.nav:last-child
+		@media all and (min-width: $bp-med)
+			margin-left: -($space-half)
 .pagination
 	display: flex
 	flex-wrap: wrap
@@ -100,7 +119,7 @@
 		&:last-child
 			border: 0
 	.page-numbers.current
-		color: $gray-dark
+		color: $black
 		font-weight: bold
 	@media all and (max-width: $bp-small - 1px)
 		.nav-links > *
