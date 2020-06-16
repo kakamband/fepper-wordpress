@@ -1,7 +1,7 @@
 html
 	font-size: (100 / 1.6)%
 body
-	background: $white
+	background-color: $white
 	font: 1.6em/1.5 $font-primary
 	-webkit-text-size-adjust: 100%
 	color: $gray-dark
@@ -35,7 +35,7 @@ a
 hr
 	border: 0
 	height: 2px
-	background: $gray-light-1
+	background-color: $gray-light-1
 	margin-bottom: $space-double
 aside,
 .section
@@ -49,13 +49,14 @@ pre
 // Completely remove from the flow but leave available to screen readers.
 .screen-reader-text,
 .visually-hidden
+	border: 0 !important
+	clip: rect(1px, 1px, 1px, 1px) !important
+	overflow: hidden !important
+	padding: 0 !important
+	pointer-events: none !important
 	position: absolute !important
-	overflow: hidden
-	width: 1px
-	height: 1px
-	padding: 0
-	border: 0
-	clip: rect(1px, 1px, 1px, 1px)
+	width: 1px !important
+	height: 1px !important
 // Floats
 .right
 	float: right

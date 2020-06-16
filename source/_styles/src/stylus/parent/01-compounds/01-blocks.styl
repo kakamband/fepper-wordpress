@@ -10,8 +10,8 @@
 .headline,
 article:not(.type-page) > header > h2.entry-title
 	line-height: 1.2
-	margin-top: 0
 	font-size: 1.25em
+	margin-top: 0
 .block-hero,
 .block-sub
 	.inner
@@ -30,7 +30,6 @@ article:not(.type-page) > header > h2.entry-title
 article[id^="post-"],
 .block-hoagie
 	@extend .cf
-	margin-bottom: $space
 	width: 100%
 	.b-inner
 		overflow: hidden
@@ -50,16 +49,14 @@ article[id^="post-"],
 				font-size: 1.4rem
 	@media all and (min-width: $bp-small)
 		.hoagies-two-col &
-			.headline
+			.headline,
+			.b-text
 				float: right
-				padding: 0 $space
+				padding: 0 0 0 $space
 				width: $column-width-three-quarters
 			.b-thumb
 				width: $column-width-one-quarter
-			.b-text
-				float: right
-				padding: 0 $space
-				width: $column-width-three-quarters
-.post-list article[id^="post-"],
+.block-hoagie
+	margin-bottom: $space
 .hoagies-two-col
 	margin-bottom: 0
