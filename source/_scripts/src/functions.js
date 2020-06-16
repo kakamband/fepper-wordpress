@@ -6,18 +6,63 @@
 
 ( function( $ ) {
 
-	function mobileNavToggle( toggler, toggled ) {
-		var $toggler = $( toggler );
+	var $togglerSearch;
+	var $togglerMenu;
+	var $navSearch;
+	var $navMenu;
 
-		if ( ! $toggler.length ) {
+	// Create hidden links enabling tabbed focusing of mobile nav links when clicking mobile nav toggle.
+	// An edgy case but still desirable for accessibility.
+	var $hiddenLinkSearch = $( '<a href="#" class="hidden-link visually-hidden"></a>' );
+	var $hiddenLinkMenu = $( '<a href="#" class="hidden-link visually-hidden"></a>' );
+
+	$hiddenLinkSearch.focus( function () {
+		if ( ! $togglerSearch.hasClass( 'focused' ) ) {
+			$togglerSearch.addClass( 'focused' );
+		}
+	} );
+
+	$hiddenLinkMenu.focus( function () {
+		if ( ! $togglerMenu.hasClass( 'focused' ) ) {
+			$togglerMenu.addClass( 'focused' );
+		}
+	} );
+
+	$hiddenLinkSearch.keydown( function ( e ) {
+		if ( e.keyCode === 13 ) { // If the Enter key is hit.
+			$togglerSearch.click();
+		}
+	} );
+
+	$hiddenLinkMenu.keydown( function ( e ) {
+		if ( e.keyCode === 13 ) { // If the Enter key is hit.
+			$togglerMenu.click();
+		}
+	} );
+
+	$hiddenLinkSearch.blur( function () {
+		$togglerSearch.removeClass( 'focused' );
+	} );
+
+	$hiddenLinkMenu.blur( function () {
+		$togglerMenu.removeClass( 'focused' );
+	} );
+
+	function mobileNavToggle( $toggler, $toggled ) {
+		if ( ! $toggler.length || ! $toggled.length ) {
 			return;
 		}
 
-		var $toggled = $( toggled );
+		var $hiddenLink = $toggled.find( '.hidden-link' );
 
-		if ( ! $toggled.length ) {
-			$toggler.hide();
-			return;
+		if ( ! $hiddenLink.length ) {
+			if ( $toggler.hasClass( 'nav-toggle-search' ) ) {
+				$hiddenLinkSearch.prependTo( $toggled );
+			} else if ( $toggler.hasClass( 'nav-toggle-menu' ) ) {
+				$hiddenLinkMenu.prependTo( $toggled );
+			}
+
+			$hiddenLink = $toggled.find( '.hidden-link' );
 		}
 
 		$toggler.click( function( e ) {
@@ -25,99 +70,88 @@
 
 			$toggled.toggleClass( 'toggle-open' );
 
-			var $body = $( 'body' );
-			var cssTop = 'calc(' + $body.css( 'padding-top' ) + ' + ' + $toggler.outerHeight() + 'px)';
-
 			if ( $toggled.hasClass( 'toggle-open' ) ) {
+				var cssTop = 'calc(' + $( 'body' ).css( 'padding-top' ) + ' + ' + $toggler.outerHeight() + 'px)';
+
 				$toggled.css( 'top', cssTop );
-			} else {
-				$toggled.css( 'top', '' );
+
+				// Focus on hidden link, now previous to 1st nav link, so when users tab, they highlight 1st nav link.
+				$hiddenLink.focus();
 			}
-
-			if ( toggler === '.nav-toggle-search' ) {
-				$( '.header .search-field' ).focus();
-
-			} else if ( toggler === '.nav-toggle-menu' ) {
-				var $header = $( '.header' );
-
-				if ( ! $header.length ) {
-					return;
-				}
-
-				var $headerLinks = $header.find( 'a' );
-
-				if ( ! $headerLinks.length ) {
-					return;
-				}
-
-				var indexOf1stNavLink;
-
-				$header.toggleClass( 'menu-open' );
-
-				// Not using jQuery .each() because we don't want to determine indexOf1stNavLink within a callback.
-				for ( var i = 0; i < $headerLinks.length; i++ ) {
-					if ( $( $headerLinks[i] ).closest( '.nav' ).length ) {
-						indexOf1stNavLink = i;
-						break;
-					}
-				}
-
-				// Focus on the header link previous to 1st nav link, so when users tab, they highlight 1st nav link.
-				$( $headerLinks[indexOf1stNavLink - 1] ).focus();
-				// Scroll back to top of page to offset the scrolling caused by the focus.
-				$( window ).scrollTop( 0 );
-				// Blur the focus so the styling side-effects of the focus aren't apparent.
-				$( $headerLinks[indexOf1stNavLink - 1] ).blur();
-			}
-		});
+		} );
 	}
 
 	$( document ).ready( function() {
 		function resetFooterHeight() {
 			var $body = $( 'body' );
 			var $footer = $( 'footer[role="contentinfo"]' );
+			var footerHeight = $footer.length ? $footer.outerHeight() + 'px' : '';
 
 			$footer.css( 'height', 'auto' );
-
-			var footerHeight = $footer.length ? $footer.outerHeight() + 'px' : '';
 
 			if ( $body.hasClass( 'admin-bar' ) ) {
 				var htmlMarginTop = $( 'html' ).css( 'margin-top' );
 				var offsetHeight = $body.css( 'top' );
 
-				$body.css( 'min-height', 'calc(100vh - ' + htmlMarginTop + ')' );
-				$footer.css( 'bottom', offsetHeight );
+				if ( parseInt( htmlMarginTop, 10 ) ) {
+					$body.css( 'min-height', 'calc(100vh - ' + htmlMarginTop + ')' );
+				} else {
+					$body.css( 'min-height', '' );
+				}
 
-				if ( ! parseInt( offsetHeight, 10 ) ) {
-					$body.css( 'padding-bottom', htmlMarginTop );
+				if ( parseInt( offsetHeight, 10 ) ) {
+					$body.css( 'padding-bottom', '' );
 					$footer.css( 'bottom', offsetHeight );
+				} else {
+					$body.css( 'padding-bottom', footerHeight );
+					$footer.css( 'bottom', '' );
 				}
 			} else {
+				$body.css( 'min-height', '' );
 				$body.css( 'padding-bottom', footerHeight );
+				$footer.css( 'bottom', '' );
 			}
+		}
+
+		var $headerContainer = $( '.header-container' );
+		var $widgetArea = $( '#widget-area' );
+		var headerBgImg = $widgetArea.css( 'background-image' );
+
+		if ( headerBgImg ) {
+			$headerContainer.css( 'background', headerBgImg + ' 0 0 / cover no-repeat fixed' );
+			$widgetArea.css( 'background-image', '' );
 		}
 
 		resetFooterHeight();
 
-		mobileNavToggle( '.nav-toggle-search', '.header .search-form' );
-		mobileNavToggle( '.nav-toggle-menu', '.header div.nav, .header div[class^="menu-"]' );
+		$togglerSearch = $( '.nav-toggle-search' );
+		$togglerMenu = $( '.nav-toggle-menu' );
+
+		$navSearch = $( '#header .search-form' );
+		$navMenu = $( '#header div.nav, #header div[class^="menu-"]' );
+
+		mobileNavToggle( $togglerSearch, $navSearch );
+		mobileNavToggle( $togglerMenu, $navMenu );
 
 		$( window ).resize( function() {
-			var $searchBlock = $( '.header .search-form' );
-			var $mainMenuBlock = $( '.header div.nav, .header div[class^="menu-"]' );
-
-			if ( $searchBlock.length && $searchBlock.hasClass( 'toggle-open' ) ) {
-				$searchBlock.removeClass( 'toggle-open' );
-				$searchBlock.css( 'top', '' );
+			if ( $navSearch.length && $navSearch.hasClass( 'toggle-open' ) ) {
+				$navSearch.removeClass( 'toggle-open' );
+				$navSearch.css( 'top', '' );
+				$togglerSearch.removeClass( 'focused' );
 			}
 
-			if ( $mainMenuBlock.length && $mainMenuBlock.hasClass( 'toggle-open' ) ) {
-				$mainMenuBlock.removeClass( 'toggle-open' );
-				$mainMenuBlock.css( 'top', '' );
+			if ( $navMenu.length && $navMenu.hasClass( 'toggle-open' ) ) {
+				$navMenu.removeClass( 'toggle-open' );
+				$navMenu.css( 'top', '' );
+				$togglerMenu.removeClass( 'focused' );
 			}
 
 			resetFooterHeight();
 		} );
+
+		// On wider mobile viewports (phablets and tablets), touching ".expanded" links will expand nested menus.
+		// The following listener removes the focus from those links, thereby closing their expanded menus.
+		$( 'body' ).click( function () {} );
 	} );
 
 } )( jQuery );
